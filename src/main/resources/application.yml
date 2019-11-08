@@ -85,9 +85,3 @@ renren:
         # token有效时长，7天，单位秒
         expire: 604800
         header: token
-
-wechat:
-  appId: wx7dba7e46a649de15
-  appSecret: 682888ccc4f85be88aa581a888f4dbf9
-  token: cowainehr
-  aesKey:
