@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.cowain</groupId>
-	<artifactId>ehr-backend</artifactId>
+	<groupId>com.mvc</groupId>
+	<artifactId>oa</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
-	<description>ehr-backend</description>
+	<description>oa</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -172,6 +172,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>${joda.time.version}</version>
@@ -241,9 +246,9 @@
 					<commands>
 						<!-- Kill Old Process -->
 						<command>pkill -f ${pack-name}</command>
-						<command>rm -f ${service-path}/ehr.log</command>
+						<command>rm -f ${service-path}/oa.log</command>
 						<!-- Restart jar package，write result into wms.log -->
-						<command><![CDATA[nohup java -jar ${service-path}/${pack-name} --spring.profiles.active=test > ${service-path}/ehr.log 2>&1 & ]]></command>
+						<command><![CDATA[nohup java -jar ${service-path}/${pack-name} --spring.profiles.active=test > ${service-path}/oa.log 2>&1 & ]]></command>
 						<command><![CDATA[netstat -nptl]]></command>
 						<command><![CDATA[ps -ef | grep java | grep -v grep]]></command>
 					</commands>
@@ -256,14 +261,6 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.14</version>
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<phase>package</phase>-->
-						<!--<goals>-->
-							<!--<goal>build</goal>-->
-						<!--</goals>-->
-					<!--</execution>-->
-				<!--</executions>-->
 				<configuration>
 					<imageName>wms/images</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
